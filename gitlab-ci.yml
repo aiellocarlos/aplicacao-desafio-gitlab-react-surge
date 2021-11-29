@@ -29,24 +29,6 @@ package app:
   script:
     - npm install
     - npm run build
-
-deploy app hml:
-  stage: deploy
-  variables:
-    CNAME: emotions.vertigo-hml.surge.sh
-    GIT_STRATEGY: none
-  cache:
-    key: app_cache
-    policy: pull
-  before_script:
-    - npm install -g surge
-  script:
-    - surge --project ./build --domain ${CNAME}
-  environment:
-    name: hml
-    url: http://${CNAME}
-  only:
-    - develop
         
 deploy app prd:
   stage: deploy
@@ -64,4 +46,4 @@ deploy app prd:
     name: prd
     url: http://${CNAME}
   only:
-    - master
+    - main
